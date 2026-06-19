@@ -58,7 +58,7 @@ minSoilMoisture=30
 wateringDuration=10#s
 AirCirculationDuration=5 #in minutes
 lastAirCirculation=0
-AirCirculationFreq=3#number of ventilations per hour
+AirCirculationFreq=3#ventilation frequency, per hour
 maxTempi=25
 #timers
 waterTim=Timer(0)
@@ -129,7 +129,7 @@ def measure():
     except:
         tempi=2  
     R2=4200#potentiometer resistance-connected in series with LDR
-    val100=200#R value when intesity is 100
+    val100=200#R value when light intesity is 100
     light=int((val100*100)/((3.3-(LDR.read_uv()/10**6))/((LDR.read_uv()/10**6)/R2)))#hodnota svetla v rozsahu od 0-100
     #print(LDR.read_uv(),light)
     soilmoist=int(100-(soilsens.read_u16()/(65535/100)))#hodnota vlhkosti pôdy v rozsahu od 0-100
@@ -529,7 +529,7 @@ def handle_client():
                 data=request.split('\r\n\r\n')[1]
                 data=data.split('&')
                 #print(data)
-                DND_act=bool(data[0].split('=')[1])
+                DND_act=(data[0].split('=')[1])=='1'
                 tm=data[1].split('=')[1]
                 tm=tm.split('%3A')
                 #print(tm)
@@ -963,7 +963,7 @@ while True:
         drawscreen()
     #print(tempo,tempi,humo,light,soilmoist)
     #neopixel
-    if (not (fan.value() or pump.value()))and not DND: 
+    if not (fan.value() or pump.value() or DND): 
         pix_off=False
     updatePix()
     #DND
@@ -977,4 +977,5 @@ while True:
     else:
         DND=False
     wdt.feed()
+    #print(DND,DND_act)
     sleep(1)
