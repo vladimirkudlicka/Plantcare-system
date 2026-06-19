@@ -6,15 +6,18 @@ DHT11-temperature and humidity outside the plant chamber;
 DS18B20-temperature inside the plant chamber;
 Capacitive soil moisture sensor;
 LDR-measuring light intesity;
+Water runout sensor-wire sensing capacitive touch values-esp32 built-in feture;
 # Light-NeoPixel
 It has 5 lightning modes: OFF, white, monocolor, bicolor, dynamic rainbow, plantcare(auto)-only purple;
-On the white, monocolor and bicolor mode there are 3 brightness modes, manual, treshold, and dimming+treshold;
+On the white, monocolor and bicolor mode there are 3 brightness modes, manual, treshold, and dimming+treshold based on light intesity values;
+lights are turned off when pump or fans run;
 parameters changable in both physical and web UI;
 # Watering
 water now function using the web UI+watering plants when soil moisture is below treshold;
+watering is stopped if water runout is detected;
 parameters changable in both physical and web UI;
 # Ventilation
-periodically ventilates + ventilates when temperature inside is high and the outside temperature is lower + ventilate now fuction using we UI;
+periodically ventilates + ventilates when temperature inside is high and the outside temperature is lower + ventilate now fuction using the UI;
 parameters changable in both physical and web UI;
 # DND
 during DND lights are off and automatic watering is disabled;
