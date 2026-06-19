@@ -56,9 +56,9 @@ pix.write()
 wlvlTrh=400
 minSoilMoisture=30
 wateringDuration=10#s
-AirCirculationDuration=5 #v minútach
+AirCirculationDuration=5 #in minutes
 lastAirCirculation=0
-AirCirculationFreq=3#pocet vetrani za hodinu
+AirCirculationFreq=3#number of ventilations per hour
 maxTempi=25
 #timers
 waterTim=Timer(0)
@@ -129,7 +129,7 @@ def measure():
     except:
         tempi=2  
     R2=4200#potentiometer resistance-connected in series with LDR
-    val100=200#hodnota R pri intenzite 100
+    val100=200#R value when intesity is 100
     light=int((val100*100)/((3.3-(LDR.read_uv()/10**6))/((LDR.read_uv()/10**6)/R2)))#hodnota svetla v rozsahu od 0-100
     #print(LDR.read_uv(),light)
     soilmoist=int(100-(soilsens.read_u16()/(65535/100)))#hodnota vlhkosti pôdy v rozsahu od 0-100
